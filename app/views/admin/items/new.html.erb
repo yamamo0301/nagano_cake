@@ -1,0 +1,18 @@
+<h2>商品新規登録</h2>
+
+<label>商品画像</label>
+<%= form_with model: @item, url: new_admin_item_path do |f| %>
+  <%= f.attachment_field :image_id %>
+<% end %>
+
+<label>商品名</label>
+
+<label>商品説明</label>
+
+<label>ジャンル</label>
+
+<label>税抜価格</label>
+
+<label>販売ステータス</label>
+
+<%= f.submit "新規登録" %>
