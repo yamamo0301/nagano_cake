@@ -1,0 +1,12 @@
+<h2>商品一覧</h2>
+
+<% @items.each do |item| %>
+  <%= item.id %>
+  <%= link_to edit_admin_item_path(item.id) do %>
+    <%= item.name %>
+  <% end %>
+  <%= item.price %>
+  <%= @genru(item.genre_id).name %>
+  <%= item.is_active %>
+  <br>
+<% end %>
