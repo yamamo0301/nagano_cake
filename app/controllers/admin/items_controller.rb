@@ -5,9 +5,6 @@ class Admin::ItemsController < ApplicationController
 
   def index
     @items = Item.all
-    @user = User.find(params[:id])
-    @post_images = @user.post_images.page(params[:page])
-    @genru = @items.genru
   end
 
   def create
