@@ -11,11 +11,28 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       flash[:notice] = 'You have created items successfully.'
-      redirect_to admin_item_path
+      redirect_to admin_item_path(@item.id)
     else
-      render :index
+      render :new
     end
   end
+
+  def show
+    @item = Item.find(params[:id])
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    @item.update(item_params)
+    redirect_to admin_item_path(@item.id)
+  end
+
+
+  private
 
   def item_params
     params.require(:item).permit(:genre_id, :name, :introduction, :price, :is_active, :image)

@@ -1,5 +1,5 @@
 class Item < ApplicationRecord
-  attachment :image_id
+  attachment :image
 
   belongs_to :genre
 end
