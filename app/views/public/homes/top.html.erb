@@ -4,3 +4,12 @@
 <p>購入には会員登録が必要になります。</p>
 
 <%= image_tag 'top.jpg' %>
+
+<h1>新着商品</h1>
+<% @items.each do |item| %>
+  <%= image_tag attachment_url(item, :image, :fill, 80, 80, format: "jpg") %>
+  <br>
+  <%= item.name %>
+  <br>
+  <%= item.price %>
+<% end %>
