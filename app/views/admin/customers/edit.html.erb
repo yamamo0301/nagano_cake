@@ -2,27 +2,27 @@
 
 <%= form_with model: @customer, url: admin_customer_path do |f| %>
   <label>会員ID</label>
-    <%= f.id %>
+    <%= @customer.id %>
     <br>
   <label>氏名</label>
-    <%= f.text_area :last_name %>
-    <%= f.text_area :first_name %>
+    <%= f.text_field :last_name %>
+    <%= f.text_field :first_name %>
     <br>
   <label>フリガナ</label>
-    <%= f.text_area :last_name_kana %>
-    <%= f.text_area :first_name_kana %>
+    <%= f.text_field :last_name_kana %>
+    <%= f.text_field :first_name_kana %>
     <br>
   <label>郵便番号</label>
-    <%= f.text_area :postal_code %>
+    <%= f.text_field :postal_code %>
     <br>
   <label>住所</label>
-    <%= f.text_area :address %>
+    <%= f.text_field :address %>
     <br>
   <label>電話番号</label>
-    <%= f.text_area :telephone_number %>
+    <%= f.text_field :telephone_number %>
     <br>
   <label>メールアドレス</label>
-    <%= f.text_area :email %>
+    <%= f.text_field :email %>
     <br>
 　<label>会員ステータス</label>
       <%= f.radio_button :is_active, true %>

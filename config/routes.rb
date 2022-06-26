@@ -13,13 +13,16 @@ Rails.application.routes.draw do
 
   scope module: :public do
     resources :customers, only: [:show, :edit, :update]
-      get 'unsubscribe' => 'customers#unsubscribe'
-      patch 'withdraw' => 'customers#withdraw'
+      get 'customers/unsubscribe' => 'customers#unsubscribe'
+      patch 'customers/withdraw' => 'customers#withdraw'
     resources :items, only: [:index, :show]
     resources :cart_items, only: [:index, :update, :destroy, :create]
-      delete 'destroy_all' => 'cart_items#destroy_all'
+      delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy ]
+    resources :orders, only: [:new, :index, :show, :create ]
+      post 'orders/confirm' => 'orders#confirm'
+      get 'orders/complete' => 'orders#complete'
   end
-
 
   namespace :admin do
     resources :genres, only: [:index, :create, :edit, :update]
