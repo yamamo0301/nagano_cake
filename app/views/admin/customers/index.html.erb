@@ -1,0 +1,15 @@
+<h1>会員一覧</h1>
+
+<% @customers.each do |customer| %>
+  <%= customer.id %>
+  <%= link_to admin_customer_path(customer.id) do %>
+    <%= customer.last_name + customer.first_name  %>
+  <% end %>
+  <%= customer.email %>
+  <% if customer.is_active == true %>
+    有効
+  <% else %>
+    退会
+  <% end %>
+  <br>
+<% end %>
