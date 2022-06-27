@@ -2,19 +2,29 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords], controllers:{
     sessions: "admin/sessions"
   }
-  devise_for :customers, skip: [:passwords], controllers:{
+
+  devise_for :customers, skip: [:registrations, :passwords], controllers:{
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+
+  devise_scope :customer do
+    get 'customers/sign_up', to: 'public/registrations#new', as: :new_customer_registration
+    post 'customers', to: 'public/registrations#create', as: :customer_registration
+  end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root to: 'public/homes#top'
   get 'about' => 'public/homes#about'
 
   scope module: :public do
-    resources :customers, only: [:show, :edit, :update]
-      get 'customers/unsubscribe' => 'customers#unsubscribe'
-      patch 'customers/withdraw' => 'customers#withdraw'
+    get 'customers/edit' => 'customers#edit', as: :edit_customers
+    get 'customers/my_page' => 'customers#show'
+    patch 'customers' => 'customers#update'
+    get 'customers/unsubscribe' => 'customers#unsubscribe'
+    patch 'customers/withdraw' => 'customers#withdraw'
+
     resources :items, only: [:index, :show]
     resources :cart_items, only: [:index, :update, :destroy, :create]
       delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
