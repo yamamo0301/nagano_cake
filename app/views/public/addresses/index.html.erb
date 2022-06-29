@@ -12,5 +12,5 @@
   <%= address.address %>
   <%= address.name %>
   <%= link_to "編集する", edit_address_path(address.id) %>
-  <%= link_to "削除する", addresses_path(address.id), method: :delete %>
+  <%= link_to "削除する", "/addresses/#{address.id}", method: :delete %>
 <% end %>

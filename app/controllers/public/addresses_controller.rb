@@ -15,7 +15,7 @@ class Public::AddressesController < ApplicationController
   end
 
   def edit
-    @address = Address.find(params[:id])
+    @address = current_customer.addresses.find(params[:id])
   end
 
   def update
@@ -24,15 +24,17 @@ class Public::AddressesController < ApplicationController
       flash[:notice] = '配送先の内容を変更しました。'
       redirect_to addresses_path
     else
-      @addresses = current_customer.addresses.all
       render :index
     end
   end
 
   def destroy
     address = Address.find(params[:id])
-    address.destroy
-    redirect_to addresses_path
+    if address.customer_id == current_customer.id
+      address.destroy
+
+      redirect_to addresses_path
+    end
   end
 
 
