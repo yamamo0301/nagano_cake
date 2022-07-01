@@ -10,7 +10,7 @@ class Public::AddressesController < ApplicationController
       flash[:notice] = '新規配送先を追加しました。'
       redirect_to addresses_path
     else
-      render :edit
+      render :index
     end
   end
 

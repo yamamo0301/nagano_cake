@@ -1,1 +1,11 @@
-<h2>SHOW</h2>
+<%= image_tag attachment_url(@item, :image, :fill, 300, 300, format: "jpg") %>
+
+<h2><%= @item.name %></h2>
+<p><%= @item.introduction %></p>
+<h3>¥ <%= @item.price * 1.1  %> (税込)</h3>
+
+<%= form_with model: @cart_item, url: '/cart_items', method: :post do |f| %>
+  <%= f.hidden_field :item_id, :value => "#{@item.id}" %>
+  <%= f.select :amount, *[1..10], prompt: '選択してください' %>
+  <%= f.submit "カートに入れる" %>
+<% end %>
