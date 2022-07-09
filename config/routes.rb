@@ -30,9 +30,10 @@ Rails.application.routes.draw do
     resources :cart_items, only: [:index, :update, :destroy, :create]
 
     resources :addresses, only: [:index, :edit, :create, :update, :destroy ]
+
+    post 'orders/confirm' => 'orders#confirm', as: :orders_confirm
+    get 'orders/complete' => 'orders#complete'
     resources :orders, only: [:new, :index, :show, :create ]
-      post 'orders/confirm' => 'orders#confirm'
-      get 'orders/complete' => 'orders#complete'
   end
 
   namespace :admin do

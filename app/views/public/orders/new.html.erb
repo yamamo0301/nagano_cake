@@ -1,6 +1,6 @@
 <h2>注文情報入力</h2>
 
-<%= form_with model: @order, url:'confirm', method: :post do |order| %>
+<%= form_with model: @order, local: true, url:'confirm' do |order| %>
   <h3>支払い方法</h3>
     <div>
       <%= order.radio_button :payment_method, Order.payment_methods.key(0) %>
@@ -31,6 +31,6 @@
     </div>
     <%= order.hidden_field :shipping_cost, :value => @order.postage %>
     <%= order.hidden_field :total_payment, :value => @order.payment %>
-    <%= order.hidden_field :status, :value => 0 %>
+    <%= order.hidden_field :status, :value => Order.statuses.key(0) %>
   <%= order.submit "確認画面へ進む" %>
 <% end %>

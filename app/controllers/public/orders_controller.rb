@@ -1,4 +1,6 @@
 class Public::OrdersController < ApplicationController
+  protect_from_forgery
+
   def new
     @order = current_customer.orders.new
   end
@@ -6,15 +8,18 @@ class Public::OrdersController < ApplicationController
   def confirm
     @order = current_customer.orders.new(order_params)
     if params[:order][:address_id] == "1"
-      @order.name = current_customer.first_name + current_customer.last_name
+      @order.name = current_customer.last_name + current_customer.first_name
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
-      @order.save
-      redirect_to order_confirm_path
     elsif  params[:order][:address_id] == "2"
+      @address = Address.find(params[:order][:address_select])
+      @order.name = @address.name
+      @order.postal_code = @address.postal_code
+      @order.address = @address.address
       redirect_to addresses_path
-    render
-      redirect_to root_path
+    elsif  params[:order][:address_id] == "3"
+    else
+      render root_path
     end
   end
 
