@@ -1,15 +1,16 @@
 class Public::OrdersController < ApplicationController
-  protect_from_forgery
-  before_action :authenticate_customer!
+  # protect_from_forgery
+  # before_action :authenticate_customer!
+  # skip_before_action :verify_authenticity_token
 
   def new
-    @order = current_customer.orders.new
+    @order = Order.new
   end
 
   def confirm
     @total_price = 0
     @cart_items = current_customer.cart_items.all
-    @order = current_customer.orders.new(order_params)
+    @order = Order.new(order_params)
     if params[:order][:address_id] == "1"
       @order.name = current_customer.last_name + current_customer.first_name
       @order.postal_code = current_customer.postal_code
@@ -30,7 +31,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-
+    byebug
   end
 
   def index

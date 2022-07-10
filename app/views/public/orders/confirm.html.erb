@@ -34,3 +34,15 @@
 <h3>お届け先</h3>
   <p><%= @order.postal_code + @order.address %></p>
   <p><%= @order.name %></p>
+
+<%= form_with model: @order, url: orders_path, local: true do |order| %>
+  <%= order.hidden_field :customer_id, :value => current_customer.id %>
+  <%= order.hidden_field :shipping_cost, :value => @order.postage %>
+  <%= order.hidden_field :payment_method, :value => @order.payment_method %>
+  <%= order.hidden_field :postal_code, :value => @order.postal_code %>
+  <%= order.hidden_field :name, :value => @order.name %>
+  <%= order.hidden_field :address, :value => @order.address %>
+  <%= order.hidden_field :total_payment, :value => @order.shipping_cost + @total_price %>
+  <%= order.hidden_field :status, :value => @order.status %>
+  <%= order.submit "注文を確定する"%>
+<% end %>
