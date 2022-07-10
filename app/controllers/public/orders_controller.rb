@@ -31,7 +31,10 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    byebug
+    @order = Order.new(order_params)
+    @order.save
+    flash[:notice] = 'You have created orders successfully.'
+    redirect_to orders_complete_path
   end
 
   def index
