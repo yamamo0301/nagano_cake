@@ -1,11 +1,14 @@
 class Public::OrdersController < ApplicationController
   protect_from_forgery
+  before_action :authenticate_customer!
 
   def new
     @order = current_customer.orders.new
   end
 
   def confirm
+    @total_price = 0
+    @cart_items = current_customer.cart_items.all
     @order = current_customer.orders.new(order_params)
     if params[:order][:address_id] == "1"
       @order.name = current_customer.last_name + current_customer.first_name
@@ -16,10 +19,9 @@ class Public::OrdersController < ApplicationController
       @order.name = @address.name
       @order.postal_code = @address.postal_code
       @order.address = @address.address
-      redirect_to addresses_path
     elsif  params[:order][:address_id] == "3"
     else
-      render root_path
+      render new_orders_path
     end
   end
 
