@@ -33,16 +33,27 @@ class Public::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.save
+    cart_items = current_customer.cart_items.all
+    cart_items.each do |cart_item|
+      order_details = @order.order_details.new
+      order_details.item_id = cart_item.item_id
+      order_details.order_id = @order.id
+      order_details.price = cart_item.item.price
+      order_details.amount = cart_item.amount
+      order_details.making_status = OrderDetail.making_statuses.key(0)
+      order_details.save
+    end
+    current_customer.cart_items.destroy_all
     flash[:notice] = 'You have created orders successfully.'
     redirect_to orders_complete_path
   end
 
   def index
-
+    @orders = current_customer.orders.all
   end
 
   def show
-
+    @order = Order.find(params[:id])
   end
 
 
@@ -58,6 +69,15 @@ class Public::OrdersController < ApplicationController
       :address,
       :total_payment,
       :status)
+  end
+
+  def order_detail_params
+    params.require(:order_detail).permit(
+      :item_id,
+      :order_id,
+      :price,
+      :amount,
+      :making_status)
   end
 
 end

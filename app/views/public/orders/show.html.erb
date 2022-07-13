@@ -1,1 +1,9 @@
-<h1>show</h1>
+<h2>注文履歴詳細</h2>
+
+<h3>注文情報</h3>
+<table>
+  <tr><th>注文日</th></th><td><%= @order.shipping_cost %></td></tr>
+  <tr><th>配送先</th><td><%= @total_price %></td></tr>
+  <tr><th>支払方法</th><td><%= @order.shipping_cost + @total_price%></td></tr>
+  <tr><th>ステータス</th><td><%= @order.shipping_cost + @total_price%></td></tr>
+</table>
