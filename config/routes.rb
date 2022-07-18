@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   root to: 'public/homes#top'
   get 'about' => 'public/homes#about'
+  get 'admin' => 'admin/homes#top'
 
   scope module: :public do
     get 'customers/edit' => 'customers#edit', as: :edit_customers
@@ -37,6 +38,9 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    resources :orders, only: [:show, :update] do
+      resources :order_details, only: [:update]
+    end
     resources :genres, only: [:index, :create, :edit, :update]
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
