@@ -124,21 +124,25 @@ footer {
   color: white;
 }
 
-.items-column-name {
+.items-column-name, .customers-column-name {
   background-color: lightgray;
 }
 
-.items-table, .item-forms {
+.items-table,
+.item-forms,
+.customers-table {
   margin: 20px auto;
   font-size: 15px;
 }
 
-.items-column-name > tr > th {
+.items-column-name > tr > th ,
+.customers-column-name > tr > th{
   padding: 10px 70px 10px 20px;
   text-align: start;
 }
 
-.items-name > tr > td {
+.items-name > tr > td,
+.customers-name > tr > td {
   padding: 10px 0px;
 }
 
@@ -188,4 +192,15 @@ footer {
 .genre-table > tbody > tr > td {
   padding: 5px 50px;
   border-bottom: solid 1px dimgray;
+}
+
+.customer-record > th,
+.customer-edit-record > th {
+  padding: 10px 0;
+  width: 200px;
+  text-align: left;
+}
+
+.address-field {
+  width: 400px;
 }
