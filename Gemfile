@@ -63,3 +63,5 @@ gem "refile-mini_magick"
 gem 'pry-byebug', group: :development
 
 gem "enum_help"
+
+gem 'kaminari','~> 1.2.1'
