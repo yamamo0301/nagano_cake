@@ -1,59 +1,72 @@
-<h2>新規会員登録</h2>
+<div class="container">
+  <h2 class="title">新規会員登録</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    名前
-    <%= f.label "(姓)" %>
-    <%= f.text_field :last_name, autofocus: true, placeholder:"令和" %>
-    <%= f.label "(名)" %>
-    <%= f.text_field :first_name, placeholder:"道子" %>
-  </div>
-
-  <div class="field">
-    フリガナ
-    <%= f.label "(セイ)" %>
-    <%= f.text_field :last_name_kana, placeholder:"レイワ" %>
-    <%= f.label "(メイ)" %>
-    <%= f.text_field :first_name_kana, placeholder:"ミチコ" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :メールアドレス %>
-    <%= f.email_field :email, placeholder:"sample@exampli.com" %>
-  </div>
-
-  <div class="field">
-    郵便番号(ハイフンなし)
-    <%= f.text_field :postal_code, placeholder:"0000000" %>
-  </div>
-
-  <div class="field">
-    住所
-    <%= f.text_field :address, placeholder:"東京都渋谷区代々木神園町0-0" %>
-  </div>
-
-  <div class="field">
-    電話番号(ハイフンなし)
-    <%= f.text_field :telephone_number, placeholder:"00000000000" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :パスワード %>(<%=@minimum_password_length %>文字以上)
-    <% if @minimum_password_length %>
+  <table>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "public/shared/error_messages", resource: resource %>
+      <tr class="customer-edit-record">
+        <th>名前</th>
+        <td>(姓)</td>
+        <td>
+          <%= f.text_field :last_name, autofocus: true, placeholder:"令和" %>
+          <%= f.label "(名)" %>
+          <%= f.text_field :first_name, placeholder:"道子" %>
+        </td>
+      </tr>
+      <tr class="customer-edit-record">
+        <th>フリガナ</th>
+        <td>(セイ)</td>
+        <td>
+          <%= f.text_field :last_name_kana, placeholder:"レイワ" %>
+          <%= f.label "(メイ)" %>
+          <%= f.text_field :first_name_kana, placeholder:"ミチコ" %>
+        </td>
+      </tr>
+      <tr class="customer-edit-record">
+        <th><%= f.label :メールアドレス %></th>
+        <td></td>
+        <td><%= f.email_field :email, placeholder:"sample@exampli.com" %></td>
+      </tr>
+      <tr class="customer-edit-record">
+        <th>郵便番号(ハイフンなし)</th>
+        <td></td>
+        <td><%= f.text_field :postal_code, placeholder:"0000000" %></td>
+      </tr>
+      <tr class="customer-edit-record">
+        <th>住所</th>
+        <td></td>
+        <td><%= f.text_field :address, placeholder:"東京都渋谷区代々木神園町0-0", class: "address-field" %></td>
+      </tr>
+      <tr class="customer-edit-record">
+        <th>電話番号(ハイフンなし)</th>
+        <td></td>
+        <td><%= f.text_field :telephone_number, placeholder:"00000000000" %></td>
+      </tr>
+      <tr class="customer-edit-record">
+        <th><%= f.label :パスワード %>(<%=@minimum_password_length %>文字以上)</th>
+        <td></td>
+        <td>
+          <% if @minimum_password_length %>
+          <% end %>
+          <%= f.password_field :password, autocomplete: "new-password" %>
+        </td>
+      </tr>
+      <tr class="customer-edit-record">
+        <th><%= f.label :パスワード %>(確認用)</th>
+        <td></td>
+        <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+      </tr>
+      <tr class="customer-edit-record">
+        <th></th>
+        <td></td>
+        <td><%= f.submit "新規登録", class: "button3" %></td>
+      </tr>
     <% end %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  </table>
+
+  <div class="container3">
+    <%= render "public/shared/links" %>
   </div>
 
-  <div class="field">
-    <%= f.label :パスワード %>(確認用)
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+</div>
 
-  <div class="actions">
-    <%= f.submit "新規登録" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>

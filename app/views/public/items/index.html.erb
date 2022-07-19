@@ -1,12 +1,24 @@
-<h2>商品一覧</h2>
+<div class="container">
+  <h2 class="title">商品一覧</h2>
 
-<% @items.each do |item| %>
-  <%= link_to item_path(item.id) do %>
-    <%= image_tag attachment_url(item, :image, :fill, 120, 120, format: "jpg") %>
-    <br>
-    <%= item.name %>
-    <br>
-    ¥<%= item.price %>
-    <br>
+  <div class="flex-box">
+  <% @items.each do |item| %>
+    <div class="container2">
+      <%= link_to item_path(item.id) do %>
+        <div>
+          <%= image_tag attachment_url(item, :image, :fill, 210, 140, format: "jpg") %>
+        </div>
+        <p><%= item.name %></p>
+        <p>¥<%= item.price.to_s(:delimited) %></p>
+      <% end %>
+    </div>
   <% end %>
-<% end %>
+  </div>
+
+  <div class="paginate">
+    <%= paginate @items %>
+  </div>
+
+</div>
+
+
