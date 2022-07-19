@@ -1,28 +1,46 @@
-<h2>ショッピングカート</h2>
+<div class="container">
+  <h2 class="title">ショッピングカート</h2>
 
-<div>
-  <%= link_to "カートを空にする", 'cart_items/destroy_all', method: :delete %>
-</div>
+  <p class="cart-item-delete"><%= link_to "カートを空にする", 'cart_items/destroy_all', method: :delete, class: "button4" %></p>
 
-<% @cart_items.each do |cart_item| %>
-  <%= cart_item.item.name %>
-  <%= cart_item.item.with_tax_price %>
-  <%= cart_item.amount %>
+  <table class="customers-table">
+    <thead class="customers-column-name">
+      <tr>
+        <th>商品名</th>
+        <th>単価(税込)</th>
+        <th>数量</th>
+        <th>小計</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody class="customers-name">
+      <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td class="text-center"><%= image_tag attachment_url(cart_item.item, :image, :fill, 60, 40, format: "jpg") %><%= cart_item.item.name %></td>
+          <td><%= cart_item.item.with_tax_price.to_s(:delimited) %>円</td>
+          <td>
+            <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch do |f| %>
+              <%= f.select :amount, *[1..10] %>
+              <%= f.submit "変更", class: "button3" %>
+            <% end %>
+          </td>
+          <td><%= cart_item.subtotal.to_s(:delimited) %>円</td>
+          <td><%= link_to "削除する", "/cart_items/#{cart_item.id}", method: :delete, class: "button4" %></td>
+        </tr>
+        <% @total_price += cart_item.subtotal %>
+      <% end %>
+      <tr>
+        <td><%= link_to "買い物を続ける", items_path, class: "button5" %></td>
+        <td></td>
+        <td><strong>合計金額</strong></td>
+        <td><strong><%= @total_price.to_s(:delimited) %>円</strong></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 
-  <div>
-  <%= cart_item.subtotal %>
+  <div class="actions">
+    <%= link_to "情報入力に進む", new_order_path, class: "button2" %>
   </div>
-  <% @total_price += cart_item.subtotal %>
-  <%= link_to "削除する", "/cart_items/#{cart_item.id}", method: :delete %>
 
-<% end %>
-
-<h1><%= @total_price %></h1>
-
-<div>
-  <%= link_to "買い物を続ける", items_path %>
-</div>
-
-<div>
-  <%= link_to "情報入力に進む", new_order_path %>
 </div>

@@ -111,6 +111,22 @@ footer {
   color: white;
 }
 
+.button4 {
+  text-decoration: none;
+  background-color: crimson;
+  padding: 5px 20px;
+  border-radius: 10px;
+  color: white;
+}
+
+.button5 {
+  text-decoration: none;
+  background-color: dodgerblue;
+  padding: 5px 20px;
+  border-radius: 10px;
+  color: white;
+}
+
 .admin_login_field {
   font-size: 20px;
   width: 300px;
@@ -303,4 +319,14 @@ footer {
 
 .introduction {
   height: 100px;
+}
+
+.cart-item-delete {
+  float: right;
+  margin-top: 30px;
+}
+
+.text-center {
+  display: flex;
+  align-items: center;
 }
