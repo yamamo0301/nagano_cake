@@ -1,15 +1,28 @@
-<p> ようこそ、ながのCAKEへ！</p>
-<p>このサイトは、ケーキ販売のECサイトになります。</p>
-<p>会員でない方も商品の閲覧はできますが、</p>
-<p>購入には会員登録が必要になります。</p>
+<div class="container">
 
-<%= image_tag 'top.jpg' %>
+  <div class="main-visual">
+    <div class="main-visual-content">
+      <p><strong>ようこそ、ながのCAKEへ！</strong></p>
+      <p><strong>このサイトは、ケーキ販売のECサイトになります。</strong></p>
+      <p><strong>会員でない方も商品の閲覧はできますが、</strong></p>
+      <p><strong>購入には会員登録が必要になります。</strong></p>
+    </div>
+  </div>
 
-<h1>新着商品</h1>
-<% @items.each do |item| %>
-  <%= image_tag attachment_url(item, :image, :fill, 80, 80, format: "jpg") %>
-  <br>
-  <%= item.name %>
-  <br>
-  <%= item.price %>
-<% end %>
+  <h2>新着商品</h2>
+  <div class="flex-box">
+    <% @items.each do |item| %>
+      <div class="container2">
+        <%= link_to item_path(item.id) do %>
+          <div>
+            <%= image_tag attachment_url(item, :image, :fill, 210, 140, format: "jpg") %>
+          </div>
+          <p><%= item.name %></p>
+          <p>¥<%= item.price.to_s(:delimited) %></p>
+        <% end %>
+      </div>
+    <% end %>
+    <p class="items-link"><%= link_to "全ての商品を見る >", items_path %></p>
+  </div>
+
+</div>

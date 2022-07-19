@@ -124,25 +124,34 @@ footer {
   color: white;
 }
 
-.items-column-name, .customers-column-name {
+.items-column-name,
+.customers-column-name,
+.orders-column-name,
+.order-column-name {
   background-color: lightgray;
 }
 
 .items-table,
 .item-forms,
-.customers-table {
+.customers-table,
+.orders-table,
+.order-table {
   margin: 20px auto;
   font-size: 15px;
 }
 
 .items-column-name > tr > th ,
-.customers-column-name > tr > th{
+.customers-column-name > tr > th ,
+.orders-column-name > tr > th ,
+.order-column-name > tr > th {
   padding: 10px 70px 10px 20px;
   text-align: start;
 }
 
 .items-name > tr > td,
-.customers-name > tr > td {
+.customers-name > tr > td,
+.orders-name > tr > td ,
+.order-name > tr > td {
   padding: 10px 0px;
 }
 
@@ -203,4 +212,64 @@ footer {
 
 .address-field {
   width: 400px;
+}
+
+.order-table {
+  margin: 20px;
+}
+
+.order-record > th {
+  padding: 5px 0;
+  width: 150px;
+  text-align: left;
+}
+
+.flex-box {
+  display: flex;
+}
+
+.payment-table {
+  margin-top: 200px;
+  margin-left: 30px;
+}
+
+.payment-table-column {
+  text-align: left;
+}
+
+.payment {
+  padding-left: 20px;
+  text-align: right;
+}
+
+.main-visual {
+  width: 100%;
+  height: 350px;
+  background-image: url(top.jpg);
+  background-size: cover;
+  background-position: center left;
+  margin: 10px;
+}
+
+.main-visual-content {
+  text-align: center;
+  padding-top: 150px;
+  color: white;
+  width: 100%;
+  height: 350px;
+  background-color: rgba( 0, 0, 0, 0.5);
+}
+
+.container2 {
+  margin: 10px;
+}
+
+.container2 > a {
+  color: black;
+  text-decoration: none;
+}
+
+.items-link {
+  font-size: 13px;
+  margin-top: 170px;
 }
