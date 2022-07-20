@@ -1,11 +1,18 @@
-<h2>本当に退会しますか？</h2>
-
-<p>退会すると、会員登録情報や</p>
-<p>これまでの購入履歴が閲覧できなくなります。</p>
-<p>退会する場合は、「退会する」をクリックしてください。</p>
-
-<%= link_to "退会しない", root_path %>
-
-<%= form_with model: @withdraw, url: customers_withdraw_path,  method: :patch do |f| %>
-  <%= f.submit "退会する" %>
-<% end %>
+<div class="container">
+  <div class="container6">
+    <h2>本当に退会しますか？</h2>
+    <div class="container4">
+      <p>退会すると、会員登録情報や</p>
+      <p>これまでの購入履歴が閲覧できなくなります。</p>
+      <p>退会する場合は、「退会する」をクリックしてください。</p>
+    </div>
+    <div class="container4">
+      <div class="inline">
+        <p><%= link_to "退会しない", root_path, class: "button5" %></p>
+      </div>
+      <div class="inline">
+        <p><%= link_to "退会する", customers_withdraw_path, method: :patch, class: "button4" %></p>
+      </div>
+    </div>
+  </div>
+</div>
