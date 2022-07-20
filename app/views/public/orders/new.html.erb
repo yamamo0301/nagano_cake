@@ -1,37 +1,66 @@
-<h2>注文情報入力</h2>
+<div class="container">
+  <h2 class="title">注文情報入力</h2>
 
-<%= form_with model: @order, url: orders_confirm_path, local: true do |order| %>
-  <h3>支払い方法</h3>
-    <div>
-      <%= order.radio_button :payment_method, Order.payment_methods.key(0) %>
-      <%= order.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
+  <%= form_with model: @order, url: orders_confirm_path, local: true do |order| %>
+  <div class="container4">
+    <h3>支払い方法</h3>
+    <div class="container4">
+      <div>
+        <%= order.radio_button :payment_method, Order.payment_methods.key(0) %>
+        <%= order.label :payment_method, Order.payment_methods_i18n[:credit_card] %>
+      </div>
+      <div>
+        <%= order.radio_button :payment_method, Order.payment_methods.key(1)%>
+        <%= order.label :payment_method, Order.payment_methods_i18n[:transfer] %>
+      </div>
     </div>
-    <div>
-      <%= order.radio_button :payment_method, Order.payment_methods.key(1)%>
-      <%= order.label :payment_method, Order.payment_methods_i18n[:transfer] %>
+  </div>
+  <div class="container4">
+    <h3>お届け先</h3>
+    <div class="container4">
+      <div>
+        <%= order.radio_button :address_id, "1" %>
+        <%= order.label :address_id, "ご自身の住所" %>
+        <div class="container5">
+          <%= current_customer.my_address_display %>
+        </div>
+      </div>
+      <div>
+        <%= order.radio_button :address_id, "2" %>
+        <%= order.label :address_id, "登録済み住所から選択" %>
+        <div class="container5">
+          <%= order.select :address_select, options_from_collection_for_select(current_customer.addresses.all, :id, :address_display), {}, {class: "address-field"} %>
+        </div>
+      </div>
+      <div>
+        <%= order.radio_button :address_id, "3" %>
+        <%= order.label :address_id, "新しいお届け先" %>
+        <div class="container5">
+          <table>
+            <tr>
+              <th class="font-weight-n">郵便番号（ハイフンなし）</th>
+              <td><%= order.text_field :postal_code, placeholder:"0000000" %></td>
+            </tr>
+            <tr>
+              <th class="font-weight-n">住所</th>
+              <td><%= order.text_field :address, placeholder:"東京都渋谷区代々木神園町0-0", class: "address-field" %></td>
+            </tr>
+            <tr>
+              <th class="font-weight-n">宛名</th>
+              <td><%= order.text_field :name, placeholder:"令和道子" %></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <%= order.hidden_field :customer_id, :value => current_customer.id %>
+      <%= order.hidden_field :shipping_cost, :value => @order.postage %>
+      <%= order.hidden_field :total_payment, :value => @order.payment %>
+      <%= order.hidden_field :status, :value => Order.statuses.key(0) %>
+      <div class="actions">
+        <%= order.submit "確認画面へ進む", class: "button" %>
+      </div>
     </div>
+  </div>
+  <% end %>
 
-  <h3>お届け先</h3>
-    <div>
-      <%= order.radio_button :address_id, "1" %>
-      <%= order.label :address_id, "ご自身の住所" %>
-      <%= current_customer.my_address_display %>
-    </div>
-    <div>
-      <%= order.radio_button :address_id, "2" %>
-      <%= order.label :address_id, "登録済み住所から選択" %>
-      <%= order.select :address_select, options_from_collection_for_select(current_customer.addresses.all, :id, :address_display) %>
-    </div>
-    <div>
-      <%= order.radio_button :address_id, "3" %>
-      <%= order.label :address_id, "新しいお届け先" %><br>
-        郵便番号（ハイフンなし）  <%= order.text_field :postal_code, placeholder:"0000000" %><br>
-        住所  <%= order.text_field :address, placeholder:"東京都渋谷区代々木神園町0-0" %><br>
-        宛名  <%= order.text_field :name, placeholder:"令和道子" %>
-    </div>
-    <%= order.hidden_field :customer_id, :value => current_customer.id %>
-    <%= order.hidden_field :shipping_cost, :value => @order.postage %>
-    <%= order.hidden_field :total_payment, :value => @order.payment %>
-    <%= order.hidden_field :status, :value => Order.statuses.key(0) %>
-  <%= order.submit "確認画面へ進む" %>
-<% end %>
+</div>

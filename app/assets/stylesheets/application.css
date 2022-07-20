@@ -143,7 +143,8 @@ footer {
 .items-column-name,
 .customers-column-name,
 .orders-column-name,
-.order-column-name {
+.order-column-name,
+.tr-th-column {
   background-color: lightgray;
 }
 
@@ -250,7 +251,8 @@ footer {
   margin-left: 30px;
 }
 
-.payment-table-column {
+.payment-table-column,
+.tr-th-column {
   text-align: left;
 }
 
@@ -287,6 +289,10 @@ footer {
 
 .container4 {
   margin: 10px;
+}
+
+.container5 {
+  margin: 0 20px;
 }
 
 .container2 > a {
@@ -329,4 +335,17 @@ footer {
 .text-center {
   display: flex;
   align-items: center;
+}
+
+.font-weight-n {
+  font-weight:normal;
+}
+
+.tr-th-column {
+  padding: 10px;
+}
+
+.complete {
+  line-height: 400px;
+  text-align: center;
 }
