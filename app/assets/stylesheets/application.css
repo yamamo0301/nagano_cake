@@ -381,3 +381,7 @@ footer {
   border:1px solid #333;
   text-align: center;
 }
+
+.new-item {
+  margin-left: auto;
+}

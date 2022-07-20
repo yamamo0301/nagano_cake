@@ -1,8 +1,8 @@
 <div class="container">
   <h2 class="title"><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</h2>
 
-  <table>
-    <%= form_with model: @customer, url: admin_customer_path do |f| %>
+  <%= form_with model: @customer, url: admin_customer_path do |f| %>
+    <table>
       <tr class="customer-edit-record">
         <th>会員ID</th>
         <td><%= @customer.id %></td>
@@ -44,5 +44,6 @@
         <th></th>
         <td><%= f.submit "変更を保存", class: "button3" %></td>
       </tr>
-    <% end %>
-  </table>
+    </table>
+  <% end %>
+</div>
