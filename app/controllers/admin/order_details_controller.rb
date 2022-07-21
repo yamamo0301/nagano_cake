@@ -1,4 +1,6 @@
 class Admin::OrderDetailsController < ApplicationController
+  before_action :move_to_signed_in
+  
   def update
     @order_detail = OrderDetail.find(params[:id])
     if @order_detail.update(order_detail_params)
@@ -15,4 +17,11 @@ class Admin::OrderDetailsController < ApplicationController
   def order_detail_params
     params.require(:order_detail).permit(:making_status)
   end
+  
+  def move_to_signed_in
+    unless admin_signed_in?
+      redirect_to  '/admin/sign_in'
+    end
+  end
+
 end

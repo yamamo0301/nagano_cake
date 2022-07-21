@@ -247,8 +247,9 @@ footer {
 }
 
 .payment-table {
-  margin-top: 200px;
-  margin-left: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .payment-table-column,

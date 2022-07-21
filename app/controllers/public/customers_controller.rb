@@ -20,6 +20,7 @@ class Public::CustomersController < ApplicationController
   def withdraw
     @withdraw = current_customer
     @withdraw.update(is_active: false)
+    sign_out(:customer)
     redirect_to root_path
   end
 

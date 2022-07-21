@@ -1,7 +1,7 @@
 <div class="container">
   <h2 class="title">注文情報確認</h2>
 
-  <div class="flex-box">
+
     <table class="customers-table">
       <thead class="customers-column-name">
         <tr>
@@ -27,7 +27,8 @@
       </tbody>
     </table>
 
-    <table class="payment-table">
+  <div  class="payment-table">
+    <table>
       <tr>
         <th class="tr-th-column">送料</th>
         <td class="payment"><%= @order.shipping_cost %></td>
@@ -41,8 +42,8 @@
         <td class="payment"><%= @order.shipping_cost + @total_price %></td>
       </tr>
     </table>
-  </div>
 
+  <div>
   <h3>支払い方法</h3>
   <div class="container5">
     <p><%= @order.payment_method_i18n %></p>
@@ -67,4 +68,7 @@
       <%= order.submit "注文を確定する", class: "button2" %>
     </div>
   <% end %>
+  </div>
+
+  </div>
 </div>

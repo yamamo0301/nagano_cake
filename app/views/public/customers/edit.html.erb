@@ -1,8 +1,8 @@
 <div class="container">
   <h2 class="title">会員情報編集</h2>
 
-  <table>
-    <%= form_with model: @customer, url: customers_path do |f| %>
+  <%= form_with model: @customer, url: customers_path do |f| %>
+    <table>
       <tr class="customer-edit-record">
         <th>氏名</th>
         <td><%= f.text_field :last_name %> <%= f.text_field :first_name %></td>
@@ -34,6 +34,6 @@
           <%= link_to "退会する", customers_unsubscribe_path, class: "button4 container5" %>
         </td>
       </tr>
-    <% end %>
-  </table>
+    </table>
+  <% end %>
 </div>

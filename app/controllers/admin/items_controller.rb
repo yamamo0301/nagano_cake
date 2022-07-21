@@ -1,4 +1,6 @@
 class Admin::ItemsController < ApplicationController
+  before_action :move_to_signed_in
+
   def new
     @item = Item.new
   end
@@ -36,6 +38,12 @@ class Admin::ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:genre_id, :name, :introduction, :price, :is_active, :image)
+  end
+
+  def move_to_signed_in
+    unless admin_signed_in?
+      redirect_to  '/admin/sign_in'
+    end
   end
 
 end
