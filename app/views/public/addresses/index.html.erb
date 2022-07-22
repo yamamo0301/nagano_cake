@@ -31,8 +31,8 @@
         <th></th>
       </tr>
     </thead>
-    <tbody class="items-name">
-      <% @addresses.each do |address| %>
+    <% @addresses.each do |address| %>
+      <tbody class="items-name">
         <tr>
           <td><%= address.postal_code %></td>
           <td><%= address.address %></td>
@@ -42,7 +42,7 @@
             <%= link_to "削除する", "/addresses/#{address.id}", method: :delete, class: "button4" %>
           </td>
         </tr>
-      <% end %>
-    </tbody>
+      </tbody>
+    <% end %>
   </table>
 </div>
